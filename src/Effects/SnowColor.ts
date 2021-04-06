@@ -1,5 +1,5 @@
 import _watermark from './WaterMark'
-import { IRON_MAN } from '../base-64-img'
+import { CYBERPUNK } from '../base-64-img'
 import { Particle, Color } from '../Components'
 
 interface Pixel {
@@ -9,13 +9,13 @@ interface Pixel {
 
 
 
-const FIRE = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
+const COLORED_SNOW = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
     _watermark(ctx)
     const MAX_PARTICLES = 5000
     const particles: Array<Particle> = []
     const modelIMG = new Image(800, 480)
     const brightness: Array<Array<Pixel>> = []
-    modelIMG.src = IRON_MAN
+    modelIMG.src = CYBERPUNK
     modelIMG.onload = ev => {
 
         ctx.drawImage(modelIMG, 0, 0)
@@ -25,6 +25,7 @@ const FIRE = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
         const imgData: ImageData = ctx.getImageData(0, 0, modelIMG.width, modelIMG.height)
         for (let i = 0; i < MAX_PARTICLES; i++) {
             particles.push(new Particle(ctx))
+            particles[i].speed = 2
         }
 
         const calcBrightness = async () => {
@@ -59,16 +60,16 @@ const FIRE = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
             ctx.globalAlpha = 0.04
             ctx.fillStyle = 'black'
             ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-            ctx.globalAlpha = 1.0
 
-
-            //TODO:
+            ctx.strokeStyle = 'anti-Alias'
             particles.forEach((par: Particle) => {
-                par.updateSpring()
+                par.update()
                 if (brightness[par.posY] && brightness[par.posY][par.posX]) {
                     let a = brightness[par.posY][par.posX]
-                    let { bright, color: { r, g, b } } = a
-                    par.color = `rgb(${r},${g},${b})`
+                    let { bright, color } = a
+                    ctx.globalAlpha = 1.0
+
+                    par.color = `rgb(${color.r},${color.g},${color.b})`
                     par.draw(bright > 0)
                 }
 
@@ -83,4 +84,4 @@ const FIRE = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
 }
 
 
-export default FIRE
+export default COLORED_SNOW

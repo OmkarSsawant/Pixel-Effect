@@ -67,14 +67,13 @@ const snakkyDraw = function (ctx: CanvasRenderingContext2D, onIDChange: Function
                         let a = brightness[par.posY][par.posX]
                         let { bright, color: { r, g, b } } = a
                         // let grey = r + g + b / 3
-                        par.color = `rgb(${r},${g},${b})`
+                        par.color = `rgba(${r},${g},${b},100)`
                         par.draw(bright > 0)
                     }
                 }
                 releaseParticle()
                 releaseParticle()
-                releaseParticle()
-                releaseParticle()
+
 
 
 

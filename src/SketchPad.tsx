@@ -4,6 +4,7 @@ import snowIn from './Effects/SnowFall_In';
 import snakkyDraw from './Effects/SnakkyDraw';
 import fire from './Effects/Fire';
 import gradientSnowFall from './Effects/Gradient';
+import coloredSnow from './Effects/SnowColor';
 function SketchPad(props: any) {
 
     let cvs = useRef<HTMLCanvasElement>(null)
@@ -37,6 +38,9 @@ function SketchPad(props: any) {
                 case 'gradient':
                     gradientSnowFall(ctx, onReqChange)
                     break;
+                case 'color-snow':
+                    coloredSnow(ctx, onReqChange)
+                    break;
                 default:
                     break;
             }
@@ -51,7 +55,7 @@ function SketchPad(props: any) {
         <React.Fragment>
             <div style={{ width: "100vw", height: "100vh", background: "linear-gradient(#1a1a1c, #44444d)" }}>
 
-                <canvas ref={cvs} width="800" height="480" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", boxShadow: "#1a1a1c 5px 7px 10px" }} />
+                <canvas ref={cvs} width="800" height="480" style={{ backgroundColor: "black", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", boxShadow: "#1a1a1c 5px 7px 10px" }} />
             </div>
         </React.Fragment>
     );

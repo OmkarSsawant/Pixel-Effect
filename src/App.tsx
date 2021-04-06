@@ -46,15 +46,22 @@ function App() {
     "bottom": "",
     "right": "",
   }
+  let colorSnowPos: CSSPosition = {
+    "top": "50%",
+    "left": "82%",
+    "bottom": "",
+    "right": "",
+  }
   return (
     <div className="content">
-      <EffectButton pos={snowPos} filter="none" src={snowFallImage} onSelect={() => { setEffect('snow') }} />
-      <EffectButton pos={waterPos} filter="none" src={WATER} onSelect={() => { setEffect('snow-in') }} />
-      <EffectButton pos={firePos} filter="none" src={FIRE} onSelect={() => { setEffect('fire') }} />
+      <EffectButton pos={snowPos} effect={'snow'} filter="none" src={snowFallImage} onSelect={() => { setEffect('snow') }} />
+      <EffectButton pos={waterPos} effect={'snow-in'} filter="none" src={WATER} onSelect={() => { setEffect('snow-in') }} />
+      <EffectButton pos={firePos} effect={'fire'} filter="none" src={FIRE} onSelect={() => { setEffect('fire') }} />
 
       <SketchPad effect={effect} />
-      <EffectButton pos={springPos} filter="none" src={snowFallImage} onSelect={() => { setEffect('spring-snow') }} />
-      <EffectButton pos={gradPos} filter="none" src={snowFallImage} onSelect={() => { setEffect('gradient') }} />
+      <EffectButton pos={springPos} effect={'spring-snow'} filter="none" src={snowFallImage} onSelect={() => { setEffect('spring-snow') }} />
+      <EffectButton pos={gradPos} effect={'gradient'} filter="none" src={snowFallImage} onSelect={() => { setEffect('gradient') }} />
+      <EffectButton pos={colorSnowPos} effect={'color-snow'} filter="none" src={snowFallImage} onSelect={() => { setEffect('color-snow') }} />
 
     </div>
 

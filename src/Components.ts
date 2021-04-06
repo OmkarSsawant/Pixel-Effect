@@ -1,5 +1,4 @@
 
-const FIRE_COLORS = ['#821e06', '#d33903', '#e8730a', '#f5bc2d']
 
 export class Particle {
 
@@ -12,21 +11,23 @@ export class Particle {
     posX: number
     posY: number
     speed: number
+    angle: number
     constructor(context: CanvasRenderingContext2D, x = Math.random() * context.canvas.width, y = Math.random() * context.canvas.height) {
         this.x = x
         this.y = y
         this.velocity = Math.random() * 3
         this.ctx = context
-        this.size = Math.random() * 1.2 + 1
+        this.size = Math.random() * 1.2
         this.color = 'white'
         this.posX = Math.floor(this.x)
         this.posY = Math.floor(this.y)
         this.speed = 0
+        this.angle = 0
     }
 
 
     update() {
-        this.y += (Math.random() * this.velocity + this.speed);
+        this.y += (Math.random() * this.velocity) + this.speed;
         if (this.y >= this.ctx.canvas.height) {
             this.y = 0
         }
@@ -34,9 +35,11 @@ export class Particle {
 
     }
 
-    updateSpring(boost = 0) {
-        this.y += Math.sin(Math.random() * this.velocity + this.speed) + boost;
-        this.x += Math.cos(Math.random() * this.velocity + this.speed) + boost;
+    updateSpring() {
+        this.angle++;
+        let movement = (this.velocity) + this.speed
+        this.y += Math.sin(this.angle) * 2 + movement;
+        this.x += Math.cos(this.angle) * 2.5 + movement;
 
         if (this.y >= this.ctx.canvas.height) {
             this.y = 0
@@ -54,7 +57,6 @@ export class Particle {
             if (!noColor)
                 this.ctx.fillStyle = this.color
 
-            this.ctx.globalAlpha = 1.0
             this.ctx.strokeStyle = 'cap'
             this.ctx.arc(this.x, this.y, 2, 1, Math.PI * 2)
             this.ctx.fill()

@@ -28,6 +28,7 @@ const snowFall = function (ctx: CanvasRenderingContext2D, onIDChange: Function) 
 
             ctx.drawImage(modelIMG, 0, 0, ctx.canvas.width, ctx.canvas.height)
 
+            ctx.globalAlpha = 1.0
             //draw particles
             particles.forEach((par: Particle) => {
                 par.update()
