@@ -10,7 +10,7 @@ interface Pixel {
 
 
 const COLORED_SNOW = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
-    _watermark(ctx)
+    // _watermark(ctx)
     const MAX_PARTICLES = 5000
     const particles: Array<Particle> = []
     const modelIMG = new Image(800, 480)
@@ -60,6 +60,8 @@ const COLORED_SNOW = function (ctx: CanvasRenderingContext2D, onIDChange: Functi
             ctx.globalAlpha = 0.04
             ctx.fillStyle = 'black'
             ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+
+
 
             ctx.strokeStyle = 'anti-Alias'
             particles.forEach((par: Particle) => {

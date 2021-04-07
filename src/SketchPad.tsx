@@ -1,17 +1,19 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext, useReducer } from 'react';
 import snowFall from './Effects/SnowFall';
 import snowIn from './Effects/SnowFall_In';
 import snakkyDraw from './Effects/SnakkyDraw';
 import fire from './Effects/Fire';
 import gradientSnowFall from './Effects/Gradient';
 import coloredSnow from './Effects/SnowColor';
+import FilterContext from './utils/FilterContext';
 function SketchPad(props: any) {
 
-    let cvs = useRef<HTMLCanvasElement>(null)
-    let animId = useRef<number>()
+    const cvs = useRef<HTMLCanvasElement>(null)
+    const animId = useRef<number>()
+    const filter = useContext<string>(FilterContext)
 
     useEffect(() => {
-        // Each time RAF called returns new reqestId:number 
+        //Note: Each time RAF called returns new reqestId:number 
         const onReqChange = (req: number) => {
             animId.current = req
         }
@@ -21,9 +23,18 @@ function SketchPad(props: any) {
         if (cvs.current != null) {
             let cnvs: HTMLCanvasElement = cvs.current!!
             let ctx = cnvs.getContext('2d')!!
+
             ctx.restore()
             ctx.save()
+
+
+
+
+
             ctx.clearRect(0, 0, cnvs.width, cnvs.height)
+
+            ctx.globalCompositeOperation = filter
+
             switch (props.effect) {
                 case 'snow':
                     snowFall(ctx, onReqChange);
@@ -48,8 +59,10 @@ function SketchPad(props: any) {
             }
 
 
+
+
         }
-    }, [props.effect])
+    }, [props.effect, filter])
 
 
 
@@ -62,6 +75,8 @@ function SketchPad(props: any) {
         </React.Fragment>
     );
 }
+
+
 
 
 

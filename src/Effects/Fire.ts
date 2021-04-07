@@ -20,7 +20,6 @@ const FIRE = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
 
         ctx.drawImage(modelIMG, 0, 0)
 
-        ctx.globalCompositeOperation = 'lighter'
 
         const imgData: ImageData = ctx.getImageData(0, 0, modelIMG.width, modelIMG.height)
         for (let i = 0; i < MAX_PARTICLES; i++) {
@@ -54,14 +53,16 @@ const FIRE = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
         }
 
         calcBrightness()
+
+        ctx.globalCompositeOperation = 'lighter'
+
+
         var animId: number
         const animate = () => {
             ctx.globalAlpha = 0.04
             ctx.fillStyle = 'black'
             ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
             ctx.globalAlpha = 1.0
-
-
             //TODO:
             particles.forEach((par: Particle) => {
                 par.updateSpring()

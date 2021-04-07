@@ -3,7 +3,7 @@ import { Particle } from '../Components'
 import _watermark from './WaterMark'
 
 const gradientSnowFall = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
-    _watermark(ctx)
+    // _watermark(ctx)
     const MAX_PARTICLES = 500
     const particles: Array<Particle> = []
     const modelIMG = new Image(800, 450)
@@ -29,6 +29,7 @@ const gradientSnowFall = function (ctx: CanvasRenderingContext2D, onIDChange: Fu
 
             ctx.drawImage(modelIMG, 0, 0, ctx.canvas.width, ctx.canvas.height)
             ctx.globalAlpha = 1.0
+
 
             let gradient = ctx.createLinearGradient(0, 0, ctx.canvas.width, ctx.canvas.height)
             gradient.addColorStop(0, 'orange')

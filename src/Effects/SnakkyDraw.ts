@@ -8,7 +8,7 @@ interface Pixel {
 }
 
 const snakkyDraw = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
-    _watermark(ctx)
+    // _watermark(ctx)
     const MAX_PARTICLES = 500
     const particles: Array<Particle> = []
     const modelIMG = new Image(800, 480)
@@ -60,6 +60,9 @@ const snakkyDraw = function (ctx: CanvasRenderingContext2D, onIDChange: Function
         const animate = () => {
 
             ctx.globalAlpha = 1.0
+
+
+
             particles.forEach((par: Particle) => {
                 const releaseParticle = () => {
                     par.updateSpring()

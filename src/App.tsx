@@ -5,10 +5,14 @@ import { snowFallImage, WATER, FIRE } from './base-64-img';
 import { EffectButton } from './EffectButton';
 import CSSPosition from './utils/Position'
 import Filter from './Filter'
+import FilterContext from './utils/FilterContext'
 
 function App() {
 
   const [effect, setEffect] = useState<string>()
+  const [filter, setFilter] = useState('source-over')
+
+
 
   //TODO:create Filter Context and Acces from Childs
 
@@ -56,17 +60,19 @@ function App() {
   }
   return (
     <div className="content">
+      <FilterContext.Provider value={filter}>
+        <Filter onFilterChange={(type: string) => { setFilter(type) }} />
 
-      <Filter onFilterChange={(type: any) => { console.log('clicked', type) }} />
+        <EffectButton pos={snowPos} effect={'snow'} filter="none" src={snowFallImage} onSelect={() => { setEffect('snow') }} />
+        <EffectButton pos={waterPos} effect={'snow-in'} filter="none" src={WATER} onSelect={() => { setEffect('snow-in') }} />
+        <EffectButton pos={firePos} effect={'fire'} filter="none" src={FIRE} onSelect={() => { setEffect('fire') }} />
 
-      <EffectButton pos={snowPos} effect={'snow'} filter="none" src={snowFallImage} onSelect={() => { setEffect('snow') }} />
-      <EffectButton pos={waterPos} effect={'snow-in'} filter="none" src={WATER} onSelect={() => { setEffect('snow-in') }} />
-      <EffectButton pos={firePos} effect={'fire'} filter="none" src={FIRE} onSelect={() => { setEffect('fire') }} />
+        <SketchPad effect={effect} />
+        <EffectButton pos={springPos} effect={'spring-snow'} filter="none" src={snowFallImage} onSelect={() => { setEffect('spring-snow') }} />
+        <EffectButton pos={gradPos} effect={'gradient'} filter="none" src={snowFallImage} onSelect={() => { setEffect('gradient') }} />
+        <EffectButton pos={colorSnowPos} effect={'color-snow'} filter="none" src={snowFallImage} onSelect={() => { setEffect('color-snow') }} />
 
-      <SketchPad effect={effect} />
-      <EffectButton pos={springPos} effect={'spring-snow'} filter="none" src={snowFallImage} onSelect={() => { setEffect('spring-snow') }} />
-      <EffectButton pos={gradPos} effect={'gradient'} filter="none" src={snowFallImage} onSelect={() => { setEffect('gradient') }} />
-      <EffectButton pos={colorSnowPos} effect={'color-snow'} filter="none" src={snowFallImage} onSelect={() => { setEffect('color-snow') }} />
+      </FilterContext.Provider>
 
     </div>
 

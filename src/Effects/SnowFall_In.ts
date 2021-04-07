@@ -8,7 +8,7 @@ interface Pixel {
 }
 
 const snowFall_IN = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
-    _watermark(ctx)
+    // _watermark(ctx)
     const MAX_PARTICLES = 5000
     const particles: Array<Particle> = []
     const modelIMG = new Image(800, 480)
@@ -58,6 +58,8 @@ const snowFall_IN = function (ctx: CanvasRenderingContext2D, onIDChange: Functio
         const animate = () => {
 
             ctx.globalAlpha = 1.0
+
+
             particles.forEach((par: Particle) => {
                 par.update()
                 let a = brightness[par.posY][par.posX]

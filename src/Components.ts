@@ -32,7 +32,6 @@ export class Particle {
             this.y = 0
         }
         this.posY = Math.floor(this.y)
-
     }
 
     updateSpring() {
@@ -53,12 +52,15 @@ export class Particle {
 
     draw(shouldDraw: boolean, noColor = false) {
         if (shouldDraw) {
+
+
             this.ctx.beginPath()
             if (!noColor)
                 this.ctx.fillStyle = this.color
 
             this.ctx.strokeStyle = 'cap'
             this.ctx.arc(this.x, this.y, 2, 1, Math.PI * 2)
+            this.ctx.closePath()
             this.ctx.fill()
         }
     }
