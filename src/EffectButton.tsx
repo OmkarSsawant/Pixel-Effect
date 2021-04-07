@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react'
-import CSSPosition from './utils/Position'
+import React, { useEffect, useRef } from 'react';
+import CSSPosition from './utils/Position';
 export function EffectButton(props: any) {
 
     return (
@@ -8,9 +8,15 @@ export function EffectButton(props: any) {
             <button className="effect-btn-sha"
                 onClick={ev => props.onSelect()}
                 style={{
-                    position: "absolute", borderRadius: "15px",
-                    boxShadow: "grey 5.2px 5.2px 2px",
-                    filter: `${props.filter}`,
+                    backgroundColor: "#E8E8E9",
+                    position: "absolute",
+                    padding: "2vw",
+                    fontFamily: "monospace",
+                    fontSize: "1.2em",
+                    border: "none",
+                    color: "#1A1A1D",
+                    borderRadius: "4px",
+                    boxShadow: "#1A1A1D 4px 7px 7px",
                     top: `${props.pos.top}`, left: `${props.pos.left}`, right: `${props.pos.right}`, bottom: `${props.pos.bottom}`
                 }} >{props.effect} </button>
         </div>

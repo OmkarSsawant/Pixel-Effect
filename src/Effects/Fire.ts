@@ -20,7 +20,7 @@ const FIRE = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
 
         ctx.drawImage(modelIMG, 0, 0)
 
-
+        ctx.globalCompositeOperation = 'lighter'
 
         const imgData: ImageData = ctx.getImageData(0, 0, modelIMG.width, modelIMG.height)
         for (let i = 0; i < MAX_PARTICLES; i++) {

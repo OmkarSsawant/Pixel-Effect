@@ -8,6 +8,22 @@
   pointer-events: none;
 }
 
+.filter-btn{
+    margin-right: 12px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: none;
+  }
+ 
+  .filter-btn-selected{
+    margin-right: 12px;
+    margin-top: 4px;
+    border: none;
+    margin-bottom: 4px;
+    color: white;
+    background-color: rgb(14, 147, 235);
+  }
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

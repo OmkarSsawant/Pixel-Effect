@@ -21,6 +21,8 @@ function SketchPad(props: any) {
         if (cvs.current != null) {
             let cnvs: HTMLCanvasElement = cvs.current!!
             let ctx = cnvs.getContext('2d')!!
+            ctx.restore()
+            ctx.save()
             ctx.clearRect(0, 0, cnvs.width, cnvs.height)
             switch (props.effect) {
                 case 'snow':
@@ -53,7 +55,7 @@ function SketchPad(props: any) {
 
     return (
         <React.Fragment>
-            <div style={{ width: "100vw", height: "100vh", background: "linear-gradient(#1a1a1c, #44444d)" }}>
+            <div style={{ width: "100vw", height: "100vh", background: "linear-gradient(360deg,#1a1a1c, #44444d)" }}>
 
                 <canvas ref={cvs} width="800" height="480" style={{ backgroundColor: "black", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", boxShadow: "#1a1a1c 5px 7px 10px" }} />
             </div>
