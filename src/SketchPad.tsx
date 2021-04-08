@@ -6,6 +6,7 @@ import fire from './Effects/Fire';
 import gradientSnowFall from './Effects/Gradient';
 import coloredSnow from './Effects/SnowColor';
 import FilterContext from './utils/FilterContext';
+import alpha from './Effects/Alpha';
 function SketchPad(props: any) {
 
     const cvs = useRef<HTMLCanvasElement>(null)
@@ -53,6 +54,9 @@ function SketchPad(props: any) {
                     break;
                 case 'color-snow':
                     coloredSnow(ctx, onReqChange)
+                    break;
+                case 'alpha':
+                    alpha(ctx, onReqChange)
                     break;
                 default:
                     break;

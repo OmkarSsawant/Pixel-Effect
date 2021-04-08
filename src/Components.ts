@@ -1,3 +1,4 @@
+import MousePosition from './utils/MousePosition';
 
 
 export class Particle {
@@ -12,6 +13,9 @@ export class Particle {
     posY: number
     speed: number
     angle: number
+    density: number
+    initX: number
+    initY: number
     constructor(context: CanvasRenderingContext2D, x = Math.random() * context.canvas.width, y = Math.random() * context.canvas.height) {
         this.x = x
         this.y = y
@@ -21,8 +25,11 @@ export class Particle {
         this.color = 'white'
         this.posX = Math.floor(this.x)
         this.posY = Math.floor(this.y)
+        this.density = Math.random() * 20 + 1
         this.speed = 0
         this.angle = 0
+        this.initX = x
+        this.initY = y
     }
 
 
@@ -59,20 +66,56 @@ export class Particle {
                 this.ctx.fillStyle = this.color
 
             this.ctx.strokeStyle = 'cap'
-            this.ctx.arc(this.x, this.y, 2, 1, Math.PI * 2)
+            this.ctx.arc(this.x, this.y, this.size, 1, Math.PI * 2)
             this.ctx.closePath()
             this.ctx.fill()
         }
     }
 
 
-    debug(obj: any) {
-        this.ctx.save()
-        this.ctx.translate(this.x, this.y)
-        this.ctx.fillStyle = 'white'
-        let str = `${obj}`
-        this.ctx.fillText(str.substr(0, Math.min(str.length, 3)), 10, 10)
+
+    /* dir parameter will either be 1 or -1 to decide whether 
+        the the particles should far or close
+    */
+    move(pos: MousePosition, dir: number = 1) {
+        this.size = 3
+        let dx = pos.x - this.x
+        let dy = pos.y - this.y
+        //hypotenuse formula
+        let distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2))
+
+        let forceDirX = dx / distance;
+        let forceDirY = dy / distance;
+        let maxDis = pos.threshold;
+        let force = (maxDis - distance) / maxDis;
+        let dirX = forceDirX * force * this.density;
+        let dirY = forceDirY * force * this.density;
+
+
+        if (distance < maxDis) {
+            this.x += dirX * dir;
+            this.y += dirY * dir;
+        } else {
+            if (this.x !== this.initX) {
+                let dx = this.x - this.initX
+                this.x -= dx / 15
+            }
+            if (this.y !== this.initY) {
+                this.y = this.initY
+                this.y -= dy / 15
+            }
+        }
+
+        if (this.y >= this.ctx.canvas.height) {
+            this.y = this.initY
+        }
+        if (this.x >= this.ctx.canvas.width) {
+            this.x = this.initX
+        }
+
     }
+
+
 
 }
 
