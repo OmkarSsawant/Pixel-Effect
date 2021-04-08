@@ -19,9 +19,9 @@ export class Particle {
     constructor(context: CanvasRenderingContext2D, x = Math.random() * context.canvas.width, y = Math.random() * context.canvas.height) {
         this.x = x
         this.y = y
-        this.velocity = Math.random() * 3
+        this.velocity = Math.random() * 3 + 1
         this.ctx = context
-        this.size = Math.random() * 1.2
+        this.size = Math.random() * 1.2 + 1
         this.color = 'white'
         this.posX = Math.floor(this.x)
         this.posY = Math.floor(this.y)
@@ -123,4 +123,10 @@ export interface Color {
     r: number;
     g: number;
     b: number;
+    a: number;
+}
+
+export interface Pixel {
+    color: Color;
+    bright: number;
 }

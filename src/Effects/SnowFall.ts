@@ -9,16 +9,11 @@ const snowFall = function (ctx: CanvasRenderingContext2D, onIDChange: Function) 
     const modelIMG = new Image(800, 450)
     modelIMG.src = ModelImage
     modelIMG.onload = ev => {
-
         ctx.drawImage(modelIMG, 0, 0)
-
-
-
         const imgData: ImageData = ctx.getImageData(0, 0, modelIMG.width, modelIMG.height)
         for (let i = 0; i < MAX_PARTICLES; i++) {
             particles.push(new Particle(ctx))
         }
-
 
         var animId: number
         const animate = () => {
@@ -28,11 +23,9 @@ const snowFall = function (ctx: CanvasRenderingContext2D, onIDChange: Function) 
             ctx.fillStyle = 'black'
             ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
-
             ctx.drawImage(modelIMG, 0, 0, ctx.canvas.width, ctx.canvas.height)
 
             ctx.globalAlpha = 1.0
-
 
             //draw particles
             particles.forEach((par: Particle) => {

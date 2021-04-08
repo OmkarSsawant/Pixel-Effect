@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext, useReducer } from 'react';
+import React, { useRef, useEffect, useContext, useReducer, useState } from 'react';
 import snowFall from './Effects/SnowFall';
 import snowIn from './Effects/SnowFall_In';
 import snakkyDraw from './Effects/SnakkyDraw';
@@ -7,11 +7,15 @@ import gradientSnowFall from './Effects/Gradient';
 import coloredSnow from './Effects/SnowColor';
 import FilterContext from './utils/FilterContext';
 import alpha from './Effects/Alpha';
+import imageMoveable from "./Effects/ImageMovable";
+import Dock from './Dock'
 function SketchPad(props: any) {
 
     const cvs = useRef<HTMLCanvasElement>(null)
     const animId = useRef<number>()
     const filter = useContext<string>(FilterContext)
+    const [pixEffect, setPixEffect] = useState("Move Far")
+
 
     useEffect(() => {
         //Note: Each time RAF called returns new reqestId:number 
@@ -58,6 +62,9 @@ function SketchPad(props: any) {
                 case 'alpha':
                     alpha(ctx, onReqChange)
                     break;
+                case 'img-mov':
+                    imageMoveable(ctx, onReqChange, pixEffect, pixEffect === "Move Lined" ? 16 : 8)
+                    break;
                 default:
                     break;
             }
@@ -66,7 +73,7 @@ function SketchPad(props: any) {
 
 
         }
-    }, [props.effect, filter])
+    }, [props.effect, filter, pixEffect])
 
 
 
@@ -76,6 +83,9 @@ function SketchPad(props: any) {
 
                 <canvas ref={cvs} width="800" height="480" style={{ backgroundColor: "black", position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", boxShadow: "#1a1a1c 5px 7px 10px" }} />
             </div>
+            <Dock onPixelEffectChange={(pe: any) => {
+                setPixEffect(pe as string)
+            }} />
         </React.Fragment>
     );
 }

@@ -1,11 +1,8 @@
 import _watermark from './WaterMark'
 import { CYBERPUNK } from '../base-64-img'
-import { Particle, Color } from '../Components'
+import { Particle, Color, Pixel } from '../Components'
 
-interface Pixel {
-    color: Color;
-    bright: number;
-}
+
 
 const snakkyDraw = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
     // _watermark(ctx)
@@ -40,8 +37,10 @@ const snakkyDraw = function (ctx: CanvasRenderingContext2D, onIDChange: Function
                     let r = imgData.data[(4 * y * ctx.canvas.width) + (4 * x)];
                     let g = imgData.data[(4 * y * ctx.canvas.width) + (4 * x) + 1];
                     let b = imgData.data[(4 * y * ctx.canvas.width) + (4 * x) + 2];
+                    let a = imgData.data[(4 * y * ctx.canvas.width) + (4 * x) + 3];
+
                     let alpha = relativeBrightness(r, g, b)
-                    let color: Color = { r, g, b }
+                    let color: Color = { r, g, b, a }
                     row.push({ color, "bright": alpha })
 
 

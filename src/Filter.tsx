@@ -18,7 +18,8 @@ const Filter = (props: FilterProps) => {
         if (ev.currentTarget.textContent)
             props.onFilterChange(ev.currentTarget.textContent)
     }
-    const filters: Array<string> = ['source-over', 'source-in', 'source-atop', 'source-out', 'destination-over', 'destination-atop', 'destination-in', 'destination-out', 'lighter', 'copy', 'xor']
+    const filters: Array<string> = ['source-over', 'lighter', 'lighten', 'darken']
+    //TODO: no use in one layer image :'source-in', 'source-atop', 'source-out', 'destination-over', 'destination-atop', 'destination-in', 'destination-out', 'copy', 'xor' 
 
     return (
         <div ref={parent} className="filter-content" style={{ display: "flex", alignContent: "space-evenly", position: "absolute", backgroundColor: "white", width: "85vw", height: "4vw", borderRadius: "12px", transform: "translate(7%,15%)" }}>
