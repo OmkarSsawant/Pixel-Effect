@@ -1,4 +1,3 @@
-import MousePosition from '../utils/MousePosition';
 
 import { Particle } from "../Components"
 import cleverJoin from './common/CleverJoin'

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext, useReducer, useState } from 'react';
+import React, { useRef, useEffect, useContext, useState } from 'react';
 import snowFall from './Effects/SnowFall';
 import snowIn from './Effects/SnowFall_In';
 import snakkyDraw from './Effects/SnakkyDraw';

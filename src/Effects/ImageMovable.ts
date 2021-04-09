@@ -1,4 +1,4 @@
-import { Particle, Pixel, Color } from '../Components'
+import { Particle, Color } from '../Components'
 import { SPIDEY } from '../base-64-img'
 import m from './common/Move'
 import cleverJoin from './common/CleverJoin'

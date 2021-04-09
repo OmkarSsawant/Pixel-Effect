@@ -1,6 +1,5 @@
 import { ModelImage } from '../base-64-img'
 import { Particle } from '../Components'
-import _watermark from './WaterMark'
 
 const gradientSnowFall = function (ctx: CanvasRenderingContext2D, onIDChange: Function) {
     // _watermark(ctx)
@@ -12,7 +11,6 @@ const gradientSnowFall = function (ctx: CanvasRenderingContext2D, onIDChange: Fu
 
         ctx.drawImage(modelIMG, 0, 0)
 
-        const imgData: ImageData = ctx.getImageData(0, 0, modelIMG.width, modelIMG.height)
         for (let i = 0; i < MAX_PARTICLES; i++) {
             particles.push(new Particle(ctx))
 

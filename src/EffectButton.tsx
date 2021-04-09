@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import CSSPosition from './utils/Position';
+import React from 'react';
 export function EffectButton(props: any) {
 
     return (

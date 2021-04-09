@@ -1,4 +1,3 @@
-import _watermark from './WaterMark'
 import { CYBERPUNK } from '../base-64-img'
 import { Particle, Color, Pixel } from '../Components'
 
