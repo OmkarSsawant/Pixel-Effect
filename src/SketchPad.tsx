@@ -40,6 +40,10 @@ function SketchPad(props: any) {
 
             ctx.globalCompositeOperation = filter
 
+            if (props.effect !== "alpha") {
+                ctx.canvas.width = 800
+                ctx.canvas.height = 480
+            }
             switch (props.effect) {
                 case 'snow':
                     snowFall(ctx, onReqChange);
@@ -60,7 +64,8 @@ function SketchPad(props: any) {
                     coloredSnow(ctx, onReqChange)
                     break;
                 case 'alpha':
-                    alpha(ctx, onReqChange)
+                    const name = window.prompt('Enter Text Max [Max Char 5]', 'OMKAR') ?? 'Omkar'
+                    alpha(ctx, onReqChange, name)
                     break;
                 case 'img-mov':
                     imageMoveable(ctx, onReqChange, pixEffect, pixEffect === "Move Lined" ? 16 : 8)

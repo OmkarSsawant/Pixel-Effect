@@ -8,11 +8,24 @@ import m from './common/Move'
 
 
 
-const alpha = (ctx: CanvasRenderingContext2D, onIDChange: Function) => {
+const alpha = (ctx: CanvasRenderingContext2D, onIDChange: Function, text: string) => {
+
+    //make canvas fullscreen 
+    let { canvas } = ctx
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
+    window.addEventListener('keydown', ev => {
+        if (ev.key === "Escape" || "Esc") {
+            canvas.width = 800
+            canvas.height = 480
+
+        }
+    })
 
     ctx.fillStyle = 'white'
     ctx.font = '30px monospace'
-    ctx.fillText('OM', 0, 30)
+    ctx.fillText(text, 0, 30)
     let word: ImageData = ctx.getImageData(0, 0, 100, 100)
 
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
