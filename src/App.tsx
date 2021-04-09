@@ -11,7 +11,6 @@ function App() {
 
   const [effect, setEffect] = useState<string>()
   const [filter, setFilter] = useState('source-over')
-  const [mobile, setMobile] = useState(false)
 
 
   //TODO:create Filter Context and Acces from Childs
@@ -68,7 +67,7 @@ function App() {
     <div className="content">
       <FilterContext.Provider value={filter}>
         <Filter onFilterChange={(type: string) => { setFilter(type) }} />
-        <img src={alpha} style={{ position: "absolute", top: "8%", right: "5%", padding: "5px", borderRadius: "4px", backgroundColor: "rgb(50, 50, 50)" }} onClick={() => { setEffect('alpha') }} />
+        <img src={alpha} alt="Aa" style={{ position: "absolute", top: "8%", right: "5%", padding: "5px", borderRadius: "4px", backgroundColor: "rgb(50, 50, 50)" }} onClick={() => { setEffect('alpha') }} />
         <EffectButton pos={snowPos} effect={'snow'} filter="none" src={snowFallImage} onSelect={() => { setEffect('snow') }} />
         <EffectButton pos={waterPos} effect={'snow-in'} filter="none" src={WATER} onSelect={() => { setEffect('snow-in') }} />
         <EffectButton pos={firePos} effect={'fire'} filter="none" src={FIRE} onSelect={() => { setEffect('fire') }} />
